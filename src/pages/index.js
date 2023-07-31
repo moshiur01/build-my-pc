@@ -1,9 +1,10 @@
 import RootLayout from "@/components/layout/RootLayout";
+import Banner from "@/components/layout/ui/Banner";
 
 export default function Home() {
   return (
     <div>
-      <h1>This is Index</h1>
+      <Banner></Banner>
     </div>
   );
 }
