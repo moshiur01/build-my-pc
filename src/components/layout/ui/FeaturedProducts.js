@@ -12,7 +12,7 @@ const FeaturedProducts = ({ products }) => {
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 justify-items-center pb-8">
         {products.map((product) => (
-          <Link href={`${product?._id}`} key={product._id}>
+          <Link href={`/products/${product?._id}`} key={product._id}>
             <div className="card w-64 sm:w-72 bg-base-100 shadow-xl border border-gray-300 rounded-lg hover:shadow-2xl transform transition-transform hover:scale-105">
               <figure className="px-6 pt-6">
                 <Image

@@ -14,8 +14,10 @@ async function run(req, res) {
   try {
     await client.connect();
     const productsCollection = client.db("build-my-pc").collection("products");
+
     const { productId, category } = req.query;
 
+    //get single product
     if (req.method === "GET" && productId) {
       const product = await productsCollection.findOne({
         _id: new ObjectId(productId),
@@ -25,7 +27,10 @@ async function run(req, res) {
       } else {
         res.status(404).send({ message: "Product not found", status: 404 });
       }
-    } else if (req.method === "GET" && category) {
+    }
+
+    //get category Products
+    else if (req.method === "GET" && category) {
       const product = await productsCollection
         .find({
           Category: category,
@@ -36,7 +41,10 @@ async function run(req, res) {
       } else {
         res.status(404).send({ message: "Product not found", status: 404 });
       }
-    } else if (req.method === "GET") {
+    }
+
+    // get all products
+    else if (req.method === "GET") {
       const products = await productsCollection.find({}).toArray();
       res.send({ message: "success", status: 200, data: products });
     }
