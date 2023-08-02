@@ -4,7 +4,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import StarRatings from "react-star-ratings";
 
-const CategoryProducts = ({ products }) => {
+const CategoryProducts = ({ products, title }) => {
   const calculateAverageRating = (reviews) => {
     if (!reviews || reviews.length === 0) return 0;
 
@@ -18,7 +18,7 @@ const CategoryProducts = ({ products }) => {
   return (
     <div className="p-8">
       <div className="text-center my-8">
-        <h2 className="text-4xl font-bold mb-6">CPU / Processor</h2>
+        <h2 className="text-4xl font-bold mb-6">{title}</h2>
       </div>
       <div className="grid md:grid-cols-3 grid-cols-1 gap-10">
         {products.map((product) => (
