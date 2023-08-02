@@ -5,7 +5,7 @@ import Link from "next/link";
 const Banner = () => {
   return (
     <div className="bg-gradient-to-r p-8 rounded-lg shadow-lg lg:mt-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="grid lg:ml-56 grid-cols-1 md:grid-cols-2 gap-8 items-center ">
         <div className="text-black">
           <h2 className="text-4xl font-bold mb-4">Make your Dream Rig here </h2>
           <p className="text-lg mb-6">
