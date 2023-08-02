@@ -1,0 +1,4 @@
+h1:hover > span {
+  width: 100%;
+  transition: width 0.2s ease-in-out;
+}
