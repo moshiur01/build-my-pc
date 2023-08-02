@@ -5,24 +5,19 @@ import RootLayout from "@/components/layout/RootLayout";
 import Head from "next/head";
 import CategoryProducts from "@/components/layout/ui/CategoryProducts";
 
-const CPUCategory = ({ products }) => {
+const MotherBoard = ({ products }) => {
   return (
     <>
       <Head>
-        <title>Cpu Category</title>
+        <title>Rams</title>
       </Head>
-      <CategoryProducts
-        products={products}
-        title="Processors"
-      ></CategoryProducts>
+      <CategoryProducts products={products} title="Rams"></CategoryProducts>
     </>
   );
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch(
-    `http://localhost:3000/api/products?category=CPU/Processor`
-  );
+  const res = await fetch(`http://localhost:3000/api/products?category=RAM`);
   const data = await res.json();
   return {
     props: {
@@ -33,8 +28,8 @@ export const getStaticProps = async () => {
 };
 
 // Shared component (navbar and Footer)
-CPUCategory.getLayout = function getLayout(page) {
+MotherBoard.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
 
-export default CPUCategory;
+export default MotherBoard;
