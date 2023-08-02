@@ -54,7 +54,10 @@ const CategoryProducts = ({ products, title }) => {
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">
                   {product.ProductName}
                 </h2>
-                <p className="text-gray-500 mb-2">{product.Category}</p>
+                <p className=" mb-2">
+                  <span className="font-bold">Category : </span>
+                  {product.Category}
+                </p>
                 <p className="text-gray-600 font-bold mb-2">${product.Price}</p>
                 <div className="text-amber-400 my-2">
                   <StarRatings
