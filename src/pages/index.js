@@ -1,5 +1,6 @@
 import RootLayout from "@/components/layout/RootLayout";
 import Banner from "@/components/layout/ui/Banner";
+import FeaturedCategory from "@/components/layout/ui/FeaturedCategory";
 import FeaturedProducts from "@/components/layout/ui/FeaturedProducts";
 
 export default function Home({ products }) {
@@ -7,6 +8,7 @@ export default function Home({ products }) {
     <div>
       <Banner></Banner>
       <FeaturedProducts products={products} />
+      <FeaturedCategory></FeaturedCategory>
     </div>
   );
 }
