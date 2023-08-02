@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { utils } from "@/utlis/calculateReviews";
 const FeaturedProducts = ({ products }) => {
+  const reviews = utils.calculateAverageRating(products);
   return (
     <>
       <div className="mx-auto text-center pb-8 pt-14">
@@ -24,20 +25,23 @@ const FeaturedProducts = ({ products }) => {
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title text-lg">{product?.ProductName}</h2>
-                <p className="text-sm">
-                  If a dog chews shoes whose shoes does he choose?
-                </p>
-                <div className="flex items-center justify-center mt-3 space-x-2 text-sm">
-                  <div className="text-sm text-green-600">
-                    {product?.Status ? "In Stock" : "Out of Stock"}
-                  </div>
-                  <div className="text-xl font-bold">${product?.Price}</div>
-                  <div className="text-yellow-500">
-                    Rating: {product?.Rating}/5
-                  </div>
+                <div className="text-xl font-bold">${product?.Price}</div>
+                <div className="flex items-center justify-center mt-2 space-x-9 text-sm">
+                  {product?.Status ? (
+                    <div className="text-sm text-green-600 font-bold ">
+                      In Stock
+                    </div>
+                  ) : (
+                    <div className="text-sm text-red-600 font-bold">
+                      Out of Stock
+                    </div>
+                  )}
+
+                  <div className="text-yellow-500">Rating: {reviews}</div>
                 </div>
-                <div className="mt-2 text-sm text-gray-600">
-                  Category: {product?.Category}
+                <div className="mt-2 text-bas text-gray-600 ">
+                  <span className="font-bold">Category: </span>
+                  {product?.Category}
                 </div>
               </div>
             </div>
