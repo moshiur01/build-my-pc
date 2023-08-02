@@ -40,7 +40,7 @@ const CategoryProducts = ({ products, title }) => {
               href={`/products/${product._id}`}
               className="grid justify-center"
             >
-              <div className="relative h-48">
+              <div className="relative h-48 mx-auto">
                 <Image
                   src={product.image}
                   alt={product.ProductName}

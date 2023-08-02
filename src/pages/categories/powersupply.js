@@ -13,7 +13,7 @@ const PowerSupply = ({ products }) => {
       </Head>
       <CategoryProducts
         products={products}
-        title="Power Supply"
+        title="Power Supply Units"
       ></CategoryProducts>
     </>
   );
