@@ -1,17 +1,28 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaUser } from "react-icons/fa";
 import RootLayout from "@/components/layout/RootLayout";
 import Head from "next/head";
+import StarRatings from "react-star-ratings";
 
 const ProductDetails = ({ product }) => {
   const router = useRouter();
 
-  // If the data hasn't loaded yet or productId doesn't exist, display a loading state
   if (router.isFallback || !product) {
     return <div>Loading...</div>;
   }
+
+  //review calc
+  const calculateAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return 0;
+
+    const totalRatings = reviews.reduce(
+      (sum, review) => sum + review.IndividualRating,
+      0
+    );
+    return totalRatings / reviews.length;
+  };
 
   return (
     <>
@@ -20,11 +31,11 @@ const ProductDetails = ({ product }) => {
       </Head>
 
       <div className="p-4 md:p-8">
-        <h1 className="text-4xl font-bold mb-4 text-center">
+        <h1 className="text-4xl font-bold mb-6 text-center">
           {product?.ProductName}
         </h1>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="relative w-full h-72 md:h-auto">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="relative h-72 md:h-auto  rounded-xl">
             <Image
               src={product?.image}
               alt={product?.ProductName}
@@ -34,12 +45,13 @@ const ProductDetails = ({ product }) => {
           </div>
           <div>
             <p className="text-gray-500 mb-4 text-center md:text-left">
+              <span className="font-semibold">Category: </span>
               {product?.Category}
             </p>
             <p className="mb-4">
-              <span className="font-bold">Status:</span>{" "}
-              {product?.Status === "In Stock" ? (
-                <span className="text-green-600">In Stock</span>
+              <span className="font-bold">Status: </span>
+              {product?.Status ? (
+                <span className="text-green-600 font-semibold">In Stock</span>
               ) : (
                 <span className="text-red-600">Out of Stock</span>
               )}
@@ -48,54 +60,72 @@ const ProductDetails = ({ product }) => {
               <span className="font-bold">Price:</span> ${product?.Price}
             </p>
             <p className="mb-4">
-              <span className="font-bold">Description:</span>{" "}
+              <span className="font-bold">Description: </span>
               {product?.Description}
             </p>
             <div className="mb-4">
-              <span className="font-bold">Key Features:</span>{" "}
+              <span className="font-bold">Key Features</span>
               <ul className="list-disc list-inside">
-                <li>
-                  <span className="font-semibold">Brand:</span>{" "}
-                  {product?.KeyFeatures?.Brand}
-                </li>
-                <li>
-                  <span className="font-semibold">Model:</span>{" "}
-                  {product?.KeyFeatures?.Model}
-                </li>
-                <li>
-                  <span className="font-semibold">Specification:</span>{" "}
-                  {product?.KeyFeatures?.Specification}
-                </li>
-                <li>
-                  <span className="font-semibold">Socket:</span>{" "}
-                  {product?.KeyFeatures?.Socket}
-                </li>
-                <li>
-                  <span className="font-semibold">Clock Speed:</span>{" "}
-                  {product?.KeyFeatures?.ClockSpeed}
-                </li>
+                {Object.keys(product.KeyFeatures).map((feature) => (
+                  <li key={feature.model}>
+                    <span className="font-semibold">{feature}: </span>
+                    {product?.KeyFeatures[feature]}
+                  </li>
+                ))}
               </ul>
-            </div>
-            <div className="mb-4">
-              <span className="font-bold">Reviews:</span>{" "}
-              {product?.Reviews.map((review, index) => (
-                <div key={index} className="flex items-center mb-2">
-                  <FaStar
-                    size={18}
-                    fill="#FCD34D"
-                    className="text-yellow-500 mr-1"
+
+              <div className=" flex my-auto ">
+                <p className="font-bold">Rating: </p>
+                <div className="text-amber-400 ml-2 ">
+                  <StarRatings
+                    rating={calculateAverageRating(product?.Reviews)}
+                    starRatedColor="orange"
+                    numberOfStars={5}
+                    starDimension="16px"
+                    starSpacing="2px"
                   />
-                  <div className="ml-1">
-                    <p className="text-sm font-semibold">{review?.Name}</p>
-                    <p>{review?.Comment}</p>
-                  </div>
                 </div>
-              ))}
+              </div>
             </div>
             <div className="text-center md:text-left">
-              <button className="btn btn-primary">Buy Now</button>
+              {product.Status ? (
+                <button className="btn btn-primary mb-4 text-white md:mb-0 hover:scale-105 transform transition duration-300">
+                  Buy Now
+                </button>
+              ) : (
+                <button
+                  disabled
+                  className="btn btn-primary mb-4 text-white md:mb-0 hover:scale-105 transform transition duration-300"
+                >
+                  Buy Now
+                </button>
+              )}
             </div>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+          {product?.Reviews.map((review, index) => (
+            <div key={index} className="flex items-center mb-4 ">
+              <FaUser size={18} fill="black" className="mr-2" />
+              <div>
+                <p className="text-sm font-semibold">{review?.Name}</p>
+                <div className="flex items-center">
+                  <div className="text-amber-400 ml-2 ">
+                    <StarRatings
+                      rating={review.IndividualRating}
+                      starRatedColor="orange"
+                      numberOfStars={5}
+                      starDimension="16px"
+                      starSpacing="2px"
+                    />
+                  </div>
+                </div>
+                <p>{review?.Comment}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
