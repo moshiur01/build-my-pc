@@ -21,4 +21,3 @@ export default PcBuilderHome;
 PcBuilderHome.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
 };
-screenLeft;
