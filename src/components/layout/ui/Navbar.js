@@ -70,36 +70,62 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-violet-50">
+        {/* <ul className="menu menu-horizontal px-1 text-violet-50">
           <li tabIndex={0}>
             <details>
               <summary>Category</summary>
               <ul className="p-2">
-                <li>
-                  <Link href={"/category/processor"}>Processor</Link>
-                </li>
-                <li>
-                  <Link href={"/category/motherboard"}>Motherboard</Link>
-                </li>
-                <li>
-                  <Link href={"/category/ram"}>Ram</Link>
-                </li>
-                <li>
-                  <Link href={"/category/power-supply-unit"}>Power Supply</Link>
-                </li>
-                <li>
-                  <Link href={"/category/monitor"}>Monitor</Link>
-                </li>
-                <li>
-                  <Link href={"/category/others"}>Others</Link>
-                </li>
+                
               </ul>
             </details>
           </li>
           <li>
             <Link href={"/builder"}>Builder</Link>
           </li>
-        </ul>
+        </ul> */}
+
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className=" text-white font-bold text-l">
+            <div
+              href="/"
+              className="btn btn-ghost normal-case text-xl text-violet-50"
+            >
+              Category
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-gray-200"
+          >
+            <li>
+              <Link href={"/categories/cpu"}>Processor</Link>
+            </li>
+            <li>
+              <Link href={"/categories/motherboard"}>Motherboard</Link>
+            </li>
+            <li>
+              <Link href={"/categories/ram"}>Ram</Link>
+            </li>
+            <li>
+              <Link href={"/categories/powersupply"}>Power Supply</Link>
+            </li>
+            <li>
+              <Link href={"/categories/monitor"}>Monitor</Link>
+            </li>
+            <li>
+              <Link href={"/categories/others"}>Others</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <Link
+            href="/pcbuilder"
+            className="btn btn-ghost normal-case text-xl text-violet-50"
+          >
+            PC Builder
+          </Link>
+        </div>
       </div>
 
       <div className=" lg:mr-24 navbar-end">
