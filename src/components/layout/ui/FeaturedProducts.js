@@ -2,8 +2,19 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { utils } from "@/utlis/calculateReviews";
+import StarRatings from "react-star-ratings";
 const FeaturedProducts = ({ products }) => {
-  const reviews = utils.calculateAverageRating(products);
+  //review calc
+  const calculateAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return 0;
+
+    const totalRatings = reviews.reduce(
+      (sum, review) => sum + review.IndividualRating,
+      0
+    );
+    return totalRatings / reviews.length;
+  };
+
   return (
     <>
       <div className="mx-auto text-center pb-8 pt-14">
@@ -37,7 +48,15 @@ const FeaturedProducts = ({ products }) => {
                     </div>
                   )}
 
-                  <div className="text-yellow-500">Rating: {reviews}</div>
+                  <div className="text-amber-400 ml-2 ">
+                    <StarRatings
+                      rating={calculateAverageRating(product?.Reviews)}
+                      starRatedColor="orange"
+                      numberOfStars={5}
+                      starDimension="16px"
+                      starSpacing="2px"
+                    />
+                  </div>
                 </div>
                 <div className="mt-2 text-bas text-gray-600 ">
                   <span className="font-bold">Category: </span>
