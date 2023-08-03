@@ -4,7 +4,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import StarRatings from "react-star-ratings";
 
-const CategoryProducts = ({ products, title }) => {
+const CategoryProducts = ({ products, title, btn }) => {
   const calculateAverageRating = (reviews) => {
     if (!reviews || reviews.length === 0) return 0;
 
@@ -68,20 +68,23 @@ const CategoryProducts = ({ products, title }) => {
                     starSpacing="2px"
                   />
                 </div>
-                <div>
-                  {product.Status ? (
-                    <button className="bg-blue-500 text-white text-sm font-semibold py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300">
-                      Add to Builder
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      className="bg-gray-400 text-white text-sm font-semibold py-2 px-3 rounded-lg "
-                    >
-                      Add to Builder
-                    </button>
-                  )}
-                </div>
+
+                {btn && (
+                  <div>
+                    {product.Status ? (
+                      <button className="bg-blue-500 text-white text-sm font-semibold py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300">
+                        Add to Builder
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        className="bg-gray-400 text-white text-sm font-semibold py-2 px-3 rounded-lg "
+                      >
+                        Add to Builder
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             </Link>
           </div>

@@ -105,7 +105,7 @@ const ProductDetails = ({ product }) => {
         </div>
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+          <h2 className="text-2xl font-bold mb-4">User Reviews</h2>
           {product?.Reviews.map((review, index) => (
             <div key={index} className="flex items-center mb-4 ">
               <FaUser size={18} fill="black" className="mr-2" />
