@@ -13,7 +13,7 @@ const Banner = () => {
             Visit Star Tech shop or Order Online to get delivery Anywhere in BD.
           </p>
           <Link
-            href="/builder"
+            href="/pcbuilder"
             className="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:scale-105 transform transition duration-300 ease-in-out"
           >
             Build Your PC

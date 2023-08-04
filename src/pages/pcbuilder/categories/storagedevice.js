@@ -20,7 +20,7 @@ const StorageDevice = ({ products }) => {
 
 export const getServerSideProps = async () => {
   const res = await fetch(
-    `http://localhost:3000/api/products?category=Storage Device`
+    `https://build-my-pc-bice.vercel.app/api/products?category=Storage Device`
   );
   const data = await res.json();
   return {

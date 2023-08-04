@@ -13,7 +13,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "https://build-my-pc-bice.vercel.app/login",
   },
 };
 export default NextAuth(authOptions);

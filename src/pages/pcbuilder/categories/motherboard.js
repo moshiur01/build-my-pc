@@ -22,7 +22,7 @@ const MotherBoard = ({ products }) => {
 
 export const getServerSideProps = async () => {
   const res = await fetch(
-    `http://localhost:3000/api/products?category=Motherboard`
+    `https://build-my-pc-bice.vercel.app/api/products?category=Motherboard`
   );
   const data = await res.json();
   return {

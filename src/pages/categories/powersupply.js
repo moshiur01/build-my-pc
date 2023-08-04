@@ -20,8 +20,17 @@ const PowerSupply = ({ products }) => {
 };
 
 export const getStaticProps = async () => {
+  // //for build purpose
+  // if (typeof window === "undefined") {
+  //   return {
+  //     props: {
+  //       products: [],
+  //     },
+  //     revalidate: 30,
+  //   };
+  // }
   const res = await fetch(
-    `http://localhost:3000/api/products?category=Power Supply Unit`
+    `https://build-my-pc-bice.vercel.app/api/products?category=Power Supply Unit`
   );
   const data = await res.json();
   return {

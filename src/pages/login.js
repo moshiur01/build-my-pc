@@ -28,7 +28,9 @@ const LoginPage = () => {
             <button
               className="btn  btn-block mb-2 bg-gradient-to-r from-blue-800 to-blue-700 text-white"
               onClick={() =>
-                signIn("google", { callbackUrl: "http://localhost:3000/" })
+                signIn("google", {
+                  callbackUrl: "https://build-my-pc-bice.vercel.app/",
+                })
               }
             >
               <FcGoogle size={26} />
@@ -37,7 +39,9 @@ const LoginPage = () => {
             <button
               className="btn btn-block bg-gradient-to-r from-blue-800 to-blue-700 text-white   "
               onClick={() =>
-                signIn("github", { callbackUrl: "http://localhost:3000/" })
+                signIn("github", {
+                  callbackUrl: "https://build-my-pc-bice.vercel.app/",
+                })
               }
             >
               <BsGithub size={26} />

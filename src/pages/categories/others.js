@@ -18,7 +18,18 @@ const Monitor = ({ products }) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/products?category=Others`);
+  // //for build purpose
+  // if (typeof window === "undefined") {
+  //   return {
+  //     props: {
+  //       products: [],
+  //     },
+  //     revalidate: 30,
+  //   };
+  // }
+  const res = await fetch(
+    `https://build-my-pc-bice.vercel.app/api/products?category=Others`
+  );
   const data = await res.json();
   return {
     props: {

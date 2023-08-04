@@ -22,7 +22,7 @@ const PowerSupply = ({ products }) => {
 
 export const getServerSideProps = async () => {
   const res = await fetch(
-    `http://localhost:3000/api/products?category=Power Supply Unit`
+    `https://build-my-pc-bice.vercel.app/api/products?category=Power Supply Unit`
   );
   const data = await res.json();
   return {

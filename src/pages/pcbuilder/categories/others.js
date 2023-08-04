@@ -21,7 +21,9 @@ const Others = ({ products }) => {
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/products?category=Others`);
+  const res = await fetch(
+    `https://build-my-pc-bice.vercel.app/api/products?category=Others`
+  );
   const data = await res.json();
   return {
     props: {

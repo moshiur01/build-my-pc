@@ -87,7 +87,7 @@ const ProductDetails = ({ product }) => {
                 </div>
               </div>
             </div>
-            <div className="text-center md:text-left">
+            {/* <div className="text-center md:text-left">
               {product.Status ? (
                 <button className="btn btn-primary mb-4 text-white md:mb-0 hover:scale-105 transform transition duration-300">
                   Buy Now
@@ -100,7 +100,7 @@ const ProductDetails = ({ product }) => {
                   Buy Now
                 </button>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -136,7 +136,7 @@ export default ProductDetails;
 
 //get staticProps
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/products");
+  const res = await fetch("https://build-my-pc-bice.vercel.app/api/products");
   const data = await res.json();
 
   const paths = data?.data?.map((product) => ({
@@ -149,7 +149,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { params } = context;
   const res = await fetch(
-    `http://localhost:3000/api/products?productId=${params.productId}`
+    `https://build-my-pc-bice.vercel.app/api/products?productId=${params.productId}`
   );
   const data = await res.json();
 

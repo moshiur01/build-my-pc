@@ -23,7 +23,16 @@ Home.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/products");
+  // //for build purpose
+  // if (typeof window === "undefined") {
+  //   return {
+  //     props: {
+  //       products: [],
+  //     },
+  //     revalidate: 30,
+  //   };
+  // }
+  const res = await fetch("https://build-my-pc-bice.vercel.app/api/products");
   const data = await res.json();
 
   const shuffledData = data.data.sort(() => 0.5 - Math.random());
