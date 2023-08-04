@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   const { data: session } = useSession();
 
-  console.log(session);
   return (
     <div className="navbar bg-blue-950">
       <div className="navbar-start">
@@ -15,7 +15,7 @@ const Navbar = () => {
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -60,16 +60,18 @@ const Navbar = () => {
               </details>
             </li>
             <li>
-              <Link href={"/builder"}>Builder</Link>
+              <Link href={"/pcbuilder"}>Builder</Link>
             </li>
           </ul>
         </div>
         {/* desktop view  */}
-        <Link
-          href="/"
-          className="btn btn-ghost normal-case text-xl text-violet-50 lg:ml-16"
-        >
-          Build My PC
+        <Link href="/" className="btn btn-ghost normal-case lg:ml-16">
+          <div className="flex items-center">
+            {/* Vertically and Horizontally center the image */}
+            <div className="w-[150px] h-[40px] mr-2 mb-3 md:mb-0 flex items-center justify-center">
+              <Image src={logo} alt="logoImage" layout="responsive" />
+            </div>
+          </div>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

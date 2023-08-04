@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { utils } from "@/utlis/calculateReviews";
 import StarRatings from "react-star-ratings";
 const FeaturedProducts = ({ products }) => {
   //review calc
