@@ -1,4 +1,4 @@
-### Application Live URL: https://pc-builder-application.vercel.app
+### Application Live URL: https://build-my-pc-bice.vercel.app/
 
 ### Project Explanation:
 
