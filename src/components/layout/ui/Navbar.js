@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import avatar from "../../../assets/avater.png";
+import { useSession, signOut } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
+  console.log(session);
   return (
     <div className="navbar bg-blue-950">
       <div className="navbar-start">
@@ -70,20 +73,6 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        {/* <ul className="menu menu-horizontal px-1 text-violet-50">
-          <li tabIndex={0}>
-            <details>
-              <summary>Category</summary>
-              <ul className="p-2">
-                
-              </ul>
-            </details>
-          </li>
-          <li>
-            <Link href={"/builder"}>Builder</Link>
-          </li>
-        </ul> */}
-
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className=" text-white font-bold text-l">
             <div
@@ -129,40 +118,48 @@ const Navbar = () => {
       </div>
 
       <div className=" lg:mr-24 navbar-end">
-        <div>
-          <Link
-            href="/login"
-            className="btn btn-ghost normal-case text-xl text-violet-50"
-          >
-            Login
-          </Link>
-        </div>
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <Image src={avatar} width={100} height={100} alt="image" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            {/* {session?.user?.email || session?.user?.name ? (
-              <li onClick={() => signOut()}>
-                <a>Logout</a>
+        {session?.user?.email ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <Image
+                  src={session?.user?.image}
+                  width={100}
+                  height={100}
+                  alt="image"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 "
+            >
+              <li>
+                <a className="justify-between">
+                  {session?.user?.name}
+                  <span className="badge">New</span>
+                </a>
               </li>
-            ) : null} */}
-          </ul>
-        </div>
+              <li>
+                <button onClick={() => signOut()} className="justify-between">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <>
+            {/* login area  */}
+            <div>
+              <Link
+                href="/login"
+                className="btn btn-ghost normal-case text-xl text-violet-50"
+              >
+                Login
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
