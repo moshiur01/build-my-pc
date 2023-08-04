@@ -10,7 +10,7 @@
 
 ### Project Instruction:
 
-- git clone <https://github.com/moshiur01/build-my-pc>
+- `git clone <https://github.com/moshiur01/build-my-pc>`
 - npm i
 - add .env file
 - run the project on local server using `npm run dev`
